@@ -62,6 +62,64 @@ driver.rotate(ScreenOrientation.LANDSCAPE);
 Location loc = driver.location();
 
 
-//============================ 
+//============================ Get events in appium server ===========================================================================
+
+driver.getEvents();
 
 
+//=========================== Start an Android activity ==============================================================================
+
+driver.startActivity(new Activity("package name here","activty name here"));
+
+
+//=========================== Get current android activity ===========================================================================
+
+String act =driver.currentActivity();
+
+
+//========================== Get current package name ================================================================================
+
+String pack =driver.getCurrentPackage();
+
+
+//========================== Installing apk file on device ===========================================================================
+
+driver.installApp("location of the apk file in the pc");
+
+
+//========================== Check whether app is installed on the device ============================================================
+
+driver.isAppInstalled("packageName.appName");
+
+
+//========================== Close app on device =====================================================================================
+
+driver.closeApp();
+
+
+//========================== Reset currently active app ==============================================================================
+
+driver.resetApp();
+
+//========================== Remove App ==============================================================================================
+
+driver.removeApp("packageName.appName");
+
+
+//========================== Lock and unlock the device =============================================================================
+
+driver.lockDevice();
+driver.unlockDevice();
+
+//========================== Check whether device is locked ========================================================================
+
+boolean device =driver.isDeviceLocked();
+
+
+//========================== Perform rotate action =================================================================================
+
+driver.rotate(new DeviceRotation(dimension,dimension,dimension));
+
+
+//
+//
