@@ -47,6 +47,44 @@ driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);       //Page l
 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);        //amount of time the driver should wait
 
 
+//============================ Search an element on a page ===========================================================================
+
+MobileElement element =(MobileElement)driver.findElementByID("resource Id here");     //Capturing element by Id otherwise we can use class name,accessability id,xpath etc.
+
+
+//============================ Search for multiple elements ==========================================================================
+
+List<MobileElement> elements = (List<MobileElement>) driver.findElementsByAccessibilityId("Accessibility ID here");  //Capturing list of elements
+
+
+//============================ Perform click / sendkeys / clear actions ==============================================================
+
+MobileElement element1 =(MobileElement)driver.findElementById("element1 id here");
+MobileElement element2 =(MobileElement)driver.findElementById("element2 id here");
+
+element1.click();                               //click on an element
+element1.sendKeys("enter text here");           //send text to a text box
+element1.clear();                               //clear values of an element 
+boolean isSelected = element1.isSelected();     //check whether element is selected or not
+boolean isEnabled = element1.isEnabled();       //check whether element is currently available
+boolean isDisplayed =element1.isDisplayed();    //check whether element is currently visible on the screen
+boolean isEqual=element1.equals(element2);      //check element1 and element2 is equal
+
+
+//============================ Mouse Actions =========================================================================================
+
+MobileElement element =(MobileElement)driver.findElementById("element id here");
+TouchAction action=new TouchAction();
+action.
+
+//============================ Get text of an element ================================================================================
+
+MobileElement element =(MobileElement)driver.findElementById("Some element Id");
+element.getText();                        //Returns visible text 
+element.getTagName();                     //Returns selected element's tag name
+element.getAttribute();                   //Returns element's attribute name
+
+
 //============================ Get the current device(if native) browser(if web) orientation =========================================
 
 ScreenOrientation orientation = driver.getOrientation();
@@ -106,20 +144,20 @@ driver.resetApp();
 driver.removeApp("packageName.appName");
 
 
-//========================== Lock and unlock the device =============================================================================
+//========================== Lock and unlock the device ==============================================================================
 
 driver.lockDevice();
 driver.unlockDevice();
 
-//========================== Check whether device is locked ========================================================================
+//========================== Check whether device is locked ==========================================================================
 
 boolean device =driver.isDeviceLocked();
 
 
-//========================== Perform rotate action =================================================================================
+//========================== Perform rotate action ===================================================================================
 
 driver.rotate(new DeviceRotation(dimension,dimension,dimension));
 
 
-//
+//==========================  ================================================================================
 //
