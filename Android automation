@@ -1,0 +1,67 @@
+//=============================== Retrieve the server’s current status ===============================================================
+
+driver.getStatus();
+
+
+//=============================== Starting a new Session =============================================================================
+
+DesiredCapabilities dCap = new DesiredCapabilities();
+dCap.setCapability(MobileCapabilityType.PLATFORM_VERSION, " ");       //Android version
+dCap.setCapability(MobileCapabilityType.DEVICE_NAME, " ");            //Device name
+dCap.setCapability(MobileCapabilityType.AUTOMATION_NAME, " ");        //Automation name if android UIAutomator ios XCUITest
+dCap.setCapability(MobileCapabilityType.APP, " ");                    //Current location of apk file on the pc
+
+URL url = new URL("http://127.0.0.1:4723/wd/hub");
+
+
+//=========================== End the running session ================================================================================
+ 
+driver.quit();
+
+
+//========================== Get the current application hierarchy XML ( if native app) or page source (if web app) ==================
+
+String sourceCode = driver.getPageSource();
+
+
+
+//=========================== Navigate to backward in browser only for web apps ======================================================
+
+driver.back();
+
+
+//=========================== Retrieve the capabilities of the Session ===============================================================
+
+Map<String,Object> capbilities = driver.getSessionDetails();
+
+
+//=========================== Taking Screenshots viewpoort(if native app) Window (if web app) ========================================
+
+File fileName = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+
+
+//============================ Time Outs =============================================================================================
+
+driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);       //Page load timeout - the amount of time that driver wait for a page to load
+
+driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);        //amount of time the driver should wait
+
+
+//============================ Get the current device(if native) browser(if web) orientation =========================================
+
+ScreenOrientation orientation = driver.getOrientation();
+
+
+//============================ Set the current device(if native) browser(if web) orientation =========================================
+
+driver.rotate(ScreenOrientation.LANDSCAPE);
+
+
+//============================ Get the current geo location ==========================================================================
+
+Location loc = driver.location();
+
+
+//============================ 
+
+
