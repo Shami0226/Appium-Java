@@ -19,15 +19,45 @@ URL url = new URL("http://127.0.0.1:4723/wd/hub");
 driver.quit();
 
 
+//========================== Close the current window(only in web apps) ==============================================================
+
+driver.close();
+
+
+//========================== Get the title of current page(only in web apps) =========================================================
+
+String pageTitle=driver.getTitle();
+
+
+//========================== Get and Set window size (only in web apps) ==============================================================
+
+Dimension window= driver.manage().window().getSize();                 //Get the dimensions of the window
+driver.manage().window().setSize();                                   //Set window size
+driver.manage().window().maximize();                                  //Maximize the window size
+
+
+//========================== Navigate to a new URL (if Web) or open an Appium deep link (if Native) ==================================
+
+driver.get();
+
+
+//========================== Get the current url =====================================================================================
+
+String pageUrlc=driver.getCurrentUrl();
+
+//========================== Get and Set Window position (only in web apps) ==========================================================
+
+Point windowPosition = driver.manage().window().getPosition();        //Get the current postion of the window
+driver.manage().window().setPosition();                               //Set the window positon
+
+
 //========================== Get the current application hierarchy XML ( if native app) or page source (if web app) ==================
 
 String sourceCode = driver.getPageSource();
 
+//=========================== Delete all the cookies =================================================================================
 
-
-//=========================== Navigate to backward in browser only for web apps ======================================================
-
-driver.back();
+driver.manage().deleteAllCookies();
 
 
 //=========================== Retrieve the capabilities of the Session ===============================================================
@@ -71,11 +101,14 @@ boolean isDisplayed =element1.isDisplayed();    //check whether element is curre
 boolean isEqual=element1.equals(element2);      //check element1 and element2 is equal
 
 
-//============================ Mouse Actions =========================================================================================
+//============================ Drag from 0 th and Drop on 4th index ===================================================================
 
-MobileElement element =(MobileElement)driver.findElementById("element id here");
-TouchAction action=new TouchAction();
-action.
+WebElement source=driver.findElementsById("resource id here").get(0); 	//capturing the 0th element from the list
+WebElement target =driver.findElementsById("resource id here").get(4);  //capturing the targeted position
+		
+TouchAction action1=new TouchAction((MobileDriver)driver); //Performing drag and drop action
+action1.longPress(ElementOption.element(source)).moveTo(ElementOption.element(target)).release().perform();
+
 
 //============================ Get text of an element ================================================================================
 
@@ -159,5 +192,12 @@ boolean device =driver.isDeviceLocked();
 driver.rotate(new DeviceRotation(dimension,dimension,dimension));
 
 
-//==========================  ================================================================================
-//
+//========================== Multi touch action ======================================================================================
+
+ MultiTouchAction multiaction = new MultiTouchAction((MobileDriver) driver);
+ TouchAction action1 = new TouchAction((MobileDriver) driver).longPress(coordinates, coordinates).waitAction(1500);      // Set touch action1 on given X Y Coordinates of screen.
+ action1.longPress(element1).moveTo(element2).waitAction(100).release();
+ TouchAction action2 = new TouchAction((MobileDriver) driver).longPress(coordinates, coordinates).waitAction(1500);      // Set touch action2 on given X Y Coordinates of screen.
+ action1.longPress(element3).moveTo(element4).waitAction(100).release();
+ multiaction.add(action1).add(action2).perform();                                     // Generate multi touch action chain using different actions and perform It.
+
